@@ -8,7 +8,7 @@ import cc.openhome.class1.SimpleLinkedList;
 
 public class MyClass {
 
-	// 认识Collection架构
+	// 认识Collection架构 // http://www.cnblogs.com/nayitian/p/3266090.html
 	public static void exp1() { 
 		/* Java SE提供了满足各种需求的API，在使用这些API前，
 		 * 建议先了解其继承与接口操作架构，才能了解何时该采用哪个类，以及类之间如何彼此合作。
@@ -28,6 +28,43 @@ public class MyClass {
 		 * 操作了Collection基本行为，java.util.AbstractCollection 操作了List
 		 * 基本行为，必要时，可以继承AbstractCollection操作自己的 Collection，
 		 * 继承AbstractCollection操作自己的List，这会比直接操作 Collection或List接口方便许多。
+		 * 
+		 * 
+		 * Collection:
+			--List：----------------------- 可存放重复元素，元素存取是有序的。
+			      ---ArrayList(线程不安全，查询速度快。底层数据结构是数组结构)
+			      ---LinkedList(线程不安全。增删速度快。底层数据结构是列表结构)
+			      ---Vector(Vector：线程安全，但速度慢，已被ArrayList替代。底层数据结构是数组结构)
+			--Set ：----------------------- 元素无序的、不可重复。
+			      --- HashSet(线程不安全，存取速度快。它是如何保证元素唯一性的呢？依赖的是元素的hashCode方法和euqals方法。)
+			      --- TreeSet(线程不安全，可以对Set集合中的元素进行排序。它的排序是如何进行的呢？通过compareTo或者compare方法中的来保证元素的唯一性。元素是以二叉树的形式存放的。)
+			--Queue：----------------------用于模拟队列这种数据结构，实现“FIFO”等数据结构。通常，队列不允许随机访问队列中的元素。
+				  --- ArrayDeque(ArrayDeque类为Deque的实现类，数组方式实现。)
+				  --- PriorityQueue(PriorityQueue保存队列元素的顺序并不是按照加入队列的顺序，而是按队列元素的大小重新排序。)
+			      
+			      
+			Map虽然与Collection没有继承上的关系，然而却是彼此搭配的API:
+			 
+			--Map：------------------------ 是一个双列集合
+			      ---HashMap(线程不安全，速度慢。底层也是哈希表数据结构。是不同步的。允许null作为键，null作为值。替代了Hashtable。)
+			      ---HashTable(线程安全，速度快。底层是哈希表数据结构。是同步的。不允许null作为键，null作为值。)
+			      ---TreeMap(可以用来对Map集合中的键进行排序。)
+			      ---LinkedHashMap(可以保证HashMap集合有序。存入的顺序和取出的顺序一致。)
+			      
+			      
+			      注意:
+			      // Java中Array Arrays ArrayList的区别 
+				   * http://blog.csdn.net/karizhang/article/details/17116627
+				   * http://www.cnblogs.com/wangbin2188/p/6524200.html
+				   * 
+				   * Array（[]）：最高效；但是其容量固定且无法动态改变；
+				   * ArrayList：  容量可动态增长；但牺牲效率；
+				   * Arrays(加 s 一般都属于操作类，提供一些静态方法操作Array): 此静态类专门用来操作array, 提供搜索、排序、复制等静态方法。
+				   * 
+				   * 同理:
+				   * Collection是个java.util下的接口，它是各种集合结构的父接口。继承与他的接口主要有Set 和List. 
+				   * Collections是个java.util下的专用静态类，它包含有各种有关集合操作的静态方法。提供一系列静态方法实现对各种集合的搜索、排序、线程安全化等操作。 
+
 		 * 
 		 * */
 	}
@@ -327,6 +364,8 @@ public class MyClass {
 		 * 任何操作Iterable的对象，都可以使用这个myForEach2方法。
 		 * 改进：使用JDK5之后的 增强式for循环遍历Iterable.iterator()
 		 * */
+		
+		// http://blog.csdn.net/karizhang/article/details/17116627
 		List list2 = Arrays.asList("Jutin", "Monica", "Irene");
 		myForEach3(list2);
 		myForEach3(new HashSet(list2));
@@ -406,6 +445,7 @@ public class MyClass {
 			System.out.println(accounts);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 		/* 那么要怎么排序呢?*/

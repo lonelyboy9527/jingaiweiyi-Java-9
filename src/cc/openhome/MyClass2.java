@@ -78,7 +78,7 @@ public class MyClass2 {
 		 messages3.put("Bustin", "Hello! Bustin的信息！");
 		 messages3.put("Aonica", "给Aonica的悄悄话！");
 		 messages3.put("Crene", "Crene的可爱猫喵喵叫！");
-		 System.out.println(messages3);
+		 System.out.print("----->" + messages3);
 		 
 		 /* <3>.使用Properties (属性)
 		  * 
